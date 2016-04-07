@@ -807,7 +807,7 @@ module AlgoliaSearch
        if defined?(::Sequel) && is_a?(Sequel::Model)
          new? || self.class.algolia_must_reindex?(self)
        else
-         new_record? || self.class.algolia_must_reindex?(self)
+         new_record? || self.errors.empty? && self.class.algolia_must_reindex?(self)
        end
       true
     end
